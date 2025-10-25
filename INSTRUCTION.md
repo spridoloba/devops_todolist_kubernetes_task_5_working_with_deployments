@@ -31,7 +31,7 @@ strategy:
 
 RollingUpdate ensures zero-downtime updates.
 
-maxUnavailable: 1 — at most one pod can be unavailable during rollout.
+maxUnavailable: 0 — because 1 should be alive
 
 maxSurge: 1 — allows creating one extra pod during deployment to speed up rollout.
 This setup balances reliability and rollout speed.
@@ -84,3 +84,12 @@ kubectl get pods -n mateapp
 kubectl get hpa -n mateapp
 kubectl get deployments -n mateapp
 
+
+This is the simplest and works in all environments:
+
+kubectl port-forward deployment/todoapp-deployment 8080:8080 -n mateapp
+
+
+Now open your browser and visit:
+
+http://localhost:8080
